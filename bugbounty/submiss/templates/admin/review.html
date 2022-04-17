@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    {% for submission in submissions %}
+      <div class="row" style="margin-top:2%">
+        <div class="col-sm-9">
+          <div class="card bg-dark" style="min-height:100%; width: 50rem;">
+          <img class="card-img-top" src="{{ url_for('static', filename='submission_pics/' + submission.picture) }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-center">by {{ users[submission.by-1] }}</h5>
+              <p class="card-text">{{ submission.ans }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card bg-dark">
+            <div class="card-body">
+              <form method="POST">
+                  {{form.csrf_token()}}
+                <div class="form-group">
+                  {{ form.review.label(class='form-group')  }}
+                  {{ form.review() }}
+                </div>
+                <div class="form-group">
+                  {{ form.points.label(class='form-group')  }}
+                  {{ form.points() }}
+                </div>
+                {{ form.submission_id(value=submission.id) }}
+                <div class="form-group text-center">
+                  {{ form.submit(class="btn btn-danger") }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

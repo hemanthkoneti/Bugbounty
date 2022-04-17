@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    {% for submission in submissions %}
+      <div class="row" style="margin-top:2%">
+        <div class="col-sm-9">
+          <div class="card bg-dark" style="min-height:100%">
+          <img class="card-img-top" src="{{ url_for('static', filename='submission_pics/' + submission.picture) }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-center">By {{ users[submission.by-1] }}</h5>
+              <p class="card-text">{{ submission.ans }}</p>
+              <p class="card-text">{{ submission.correct }}</p>
+              <p class="card-text">TOS: {{ submission.time }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
