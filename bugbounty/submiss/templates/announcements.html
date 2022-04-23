@@ -1,12 +1,17 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    background: radial-gradient(#edfda3d0 30%, #f0aa12e9 100%);
+    width: 100%;
+    min-height: 100vh;
+  "
+>
   <div class="container">
     {% for ancmt in ancmts %}
-      <div class="card bg-dark" style="margin-top:2%">
-        <div class="card-body">
-          {{ancmt.message}}
-        </div>
-      </div>
+    <div class="card bg-white" style="margin-top: 2%">
+      <div class="card-body" style="color:black; padding">{{ancmt.message}}</div>
+    </div>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

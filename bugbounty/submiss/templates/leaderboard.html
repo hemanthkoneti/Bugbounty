@@ -1,6 +1,43 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container text-center">
+{% extends "base.html" %} {% block content %}
+<div  style="background: radial-gradient(#edfda3d0 30%, #f0aa12e9 100%);
+    width: 100%;
+    min-height: 100vh;">
+<section class="leaderboard">
+  <!--for demo wrap-->
+  <div class="leadertable">
+    <h1 style="color:black;">LeaderBoard</h1>
+    <div class="leaderbox">
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th  class="ColumnStyle">S.No</th>
+              <th  class="ColumnStyle">Roll No.</th>
+              <th  class="ColumnStyle">Name</th>
+              <th  class="ColumnStyle">Score</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            {% set rank=namespace(value=1) %} {% for user in users %}
+            <tr>
+              <td class="RowStyle">{{rank.value}}</td>
+              <td class="RowStyle">{{user.roll}}</td>
+              <td class="RowStyle">{{user.username}}</td>
+              <td class="RowStyle">{{user.score}}</td>
+            </tr>
+            {% set rank.value=rank.value+1 %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <div class="container text-center">
   <h1 class="text-success" style="margin:4%">Hall of Fame</h1>
   <div class="table-responsive">
   <table class="table text-white text-center table-bordered" >
@@ -24,6 +61,6 @@
     </tbody>
   </table>
   </div>
-</div>
+</div> -->
 
 {% endblock %}

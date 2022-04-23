@@ -5,7 +5,7 @@
 ### Make a virtual environment using conda
 
 ```
-conda crate -n bugbounty flask
+conda crate -m bugbounty flask
 ```
 
 ### Install dependencies
