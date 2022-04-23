@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container text-center">
+<!-- <div class="container text-center">
   <h1 class="text-success" style="margin:4%">All Users</h1>
   <div class="table-responsive">
   <table class="table text-white text-center table-bordered" >
@@ -26,6 +26,46 @@
     </tbody>
   </table>
   </div>
-</div>
+</div> -->
+
+<section class="leaderboard">
+  <!--for demo wrap-->
+  <div class="leadertable">
+    <h1>LeaderBoard</h1>
+    <div class="leaderbox">
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th  class="ColumnStyle">S.No</th>
+              <th  class="ColumnStyle">Roll No.</th>
+              <th  class="ColumnStyle">Name</th>
+              <th  class="ColumnStyle">Score</th>
+              <th class="ColumnStyle">Type</th>
+
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            {% set rank=namespace(value=1) %} {% for user in users %}
+            <tr>
+
+              <!-- <td class="RowStyle">{{rank.value}}</td> -->
+              <td class="RowStyle">{{user.id}}</td>
+              <td class="RowStyle">{{user.roll}}</td>
+              <td class="RowStyle">{{user.username}}</td>
+              <td class="RowStyle">{{user.score}}</td>
+              <td class="RowStyle">{{user.user_type}}</td>
+            </tr>
+            {% set rank.value=rank.value+1 %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

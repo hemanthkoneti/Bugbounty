@@ -1,32 +1,73 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container text-center">
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    width: 100%;
+    background: linear-gradient(#5bf0f0b3 5%, rgba(227, 230, 87, 0.923) 100%);
+  "
+>
+  <div class="container text-center">
     <h2>Admin Panel</h2>
-  <div class="row" style="margin-top:10%">
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.review') }}" class="btn btn-warning btn-lg active btn-block" role="button" aria-pressed="true">Review</a>
+    <div class="row" style="margin-top: 10%">
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.review') }}"
+          class="btn btn-warning btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >Review</a
+        >
+      </div>
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.announce') }}"
+          class="btn btn-danger btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >Announce</a
+        >
+      </div>
     </div>
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.announce') }}" class="btn btn-danger btn-lg active btn-block" role="button" aria-pressed="true">Announce</a>
+    <div class="row" style="margin-top: 5%">
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.all_users') }}"
+          class="btn btn-info btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >All Users</a
+        >
+      </div>
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.dnotif') }}"
+          class="btn btn-dark btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >DN</a
+        >
+      </div>
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.all_subs') }}"
+          class="btn btn-light btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >All Subs</a
+        >
+      </div>
     </div>
-  </div>
-  <div class="row" style="margin-top:5%">
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.all_users') }}" class="btn btn-info btn-lg active btn-block" role="button" aria-pressed="true">All Users</a>
-    </div>
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.dnotif') }}" class="btn btn-dark btn-lg active btn-block" role="button" aria-pressed="true">DN</a>
-    </div>
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.all_subs') }}" class="btn btn-light btn-lg active btn-block" role="button" aria-pressed="true">All Subs</a>
-    </div>
-  </div>
-  <div class="row" style="margin-top:5%">
-    <div class="col-sm" style="margin-top:5%">
-      <a href="{{ url_for('admin.all_feeds') }}" class="btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Feedbacks</a>
+    <div class="row" style="margin-top: 5%">
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('admin.all_feeds') }}"
+          class="btn btn-primary btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >Feedbacks</a
+        >
+      </div>
     </div>
   </div>
 </div>
-
 
 {% endblock %}

@@ -46,7 +46,7 @@ class RegistrationForm(FlaskForm):
 class SubmissionForm(FlaskForm):
     ans = StringField("Explanation", validators=[DataRequired()])
     picture = FileField(
-        "Upload Image", validators=[FileAllowed(["jpg", "png", "jpeg"]),DataRequired()]
+        "Upload Image (jpg, png, jpeg)", validators=[FileAllowed(["jpg", "png", "jpeg"]),DataRequired()]
     )
     submit = SubmitField("Submit")
 
