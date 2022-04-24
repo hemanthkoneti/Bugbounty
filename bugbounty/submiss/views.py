@@ -41,6 +41,7 @@ def register():
         if form.roll.data in admin:
             user = User(
                 roll=form.roll.data,
+                roll2=form.roll2.data,
                 username=form.username.data,
                 password=form.password.data,
                 user_type="Admin",
@@ -48,6 +49,7 @@ def register():
         else:
             user = User(
                 roll=form.roll.data,
+                roll2=form.roll2.data,
                 username=form.username.data,
                 password=form.password.data,
                 user_type="Player",
@@ -55,7 +57,7 @@ def register():
 
         db.session.add(user)
         db.session.commit()
-        flash("Thank you for registering " + form.username.data + ". Please login.")
+        flash("Thank you for registering " + form.username.data + ".Remeber this username(it is case sensitive).")
         return redirect(url_for("login"))
     return render_template("register.html", form=form)
 
@@ -64,7 +66,7 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(roll=form.roll.data).first()
+        user = User.query.filter_by(username=form.teamname.data).first()
         if user:
             if user.check_password(form.password.data):
                 login_user(user)
@@ -78,7 +80,7 @@ def login():
                 flash("Password is incorrect.")
 
         else:
-            flash("Roll number does not exist.")
+            flash("Given team name does not exist.")
     return render_template("login.html", form=form)
 
 
@@ -97,7 +99,7 @@ def leaderboard():
     #     return render_template("lead_wait.html")
     users = (
         User.query.filter_by(user_type="Player")
-        .order_by(User.score.desc())
+        .order_by(User.score.desc(),User.upgrade_time.asc())
         .all()
     )
     return render_template("leaderboard.html", users=users)
@@ -156,3 +158,7 @@ def feedback():
         return redirect(url_for("index"))
 
     return render_template("feedback.html", form=form)
+
+@app.route("/instructions")
+def instructions():
+    return render_template("instructions.html")

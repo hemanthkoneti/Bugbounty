@@ -8,7 +8,7 @@ from submiss.models import (
     Announcement,
     Feedback,
 )
-from submiss.forms import ReviewForm, AnnounceForm, NotifForm
+from submiss.forms import ReviewForm, AnnounceForm, NotifForm,UserSubmissions
 from datetime import datetime
 
 
@@ -39,12 +39,14 @@ def review():
     submissions = Submission.query.filter_by(correct=1).all()
     users = User.query.all()
     now = datetime.now()
+    prev_submission=Submission.query.filter_by(correct=2).all()
     if form.validate_on_submit():
         submission = Submission.query.filter_by(id=form.submission_id.data).first()
         user = User.query.filter_by(id=submission.by).first()
         if form.review.data == "Accept":
             submission.correct = 2
             score=user.score+form.points.data
+            submission.bug_id=form.bug_id.data
             message = (
                 "Congratulations! Your Submission on "
                 + submission.time.strftime("%d %b %Y at %I:%M %p")
@@ -56,6 +58,7 @@ def review():
                 +str(score)
             )
             user.update_score(form.points.data)
+            user.upgrade_time = submission.time
         elif form.review.data=="Reject":
             submission.correct = 0
             message = (
@@ -63,7 +66,16 @@ def review():
                 + submission.time.strftime("%d %b %Y at %I:%M %p")
                 + " has not been accepted on "
                 + now.strftime("%d %b %Y at %I:%M %p")
-                + " .As it was not correct/has been already been accepted."
+                + " .As it was not correct."
+            )
+        elif form.review.data=="AlreadySubmitted":
+            submission.correct = 0
+            message = (
+                "Oops! Your Submission on"
+                + submission.time.strftime("%d %b %Y at %I:%M %p")
+                + " has not been accepted on "
+                + now.strftime("%d %b %Y at %I:%M %p")
+                + " .As it has been already been accepted before."
             )
 
         notification = Notification(uid=user.id, message=message)
@@ -73,7 +85,7 @@ def review():
         db.session.commit()
         return redirect(url_for("admin.review"))
     return render_template(
-        "admin/review.html", submissions=submissions, form=form, users=users
+        "admin/review.html", submissions=submissions, form=form, users=users, prev_submission=prev_submission
     )
 
 
@@ -110,14 +122,16 @@ def dnotif():
     return render_template("admin/dnotif.html", form=form)
 
 
-@admin.route("/all_subs")
+@admin.route("/user_subs", methods=["GET", "POST"])
 @admin_required
-def all_subs():
-    submissions = Submission.query.order_by(Submission.time.desc()).all()
-    users = User.query.all()
-    return render_template(
-        "admin/all_subs.html", submissions=submissions, users=users
-    )
+def user_subs():
+    form=UserSubmissions()
+    if form.validate_on_submit():
+        submissions = Submission.query.filter_by(by=form.uid.data).order_by(Submission.time.desc()).all()
+        user = User.query.filter_by(id=form.uid.data).first() 
+        return render_template("admin/user_subs.html", submissions=submissions, user=user)
+    return render_template('admin/usersearch.html',form=form)
+
 @admin.route("/all_feeds")
 @admin_required
 def all_feeds():

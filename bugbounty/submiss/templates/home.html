@@ -1,149 +1,40 @@
-{% extends "base.html" %} {% block content %} {#
-  <div class="text-center">
-    <img
-      src="{{ url_for('static', filename='img/nit.png') }}"
-      class="float-left"
-      style="padding-left: 5%"
-      alt="..."
-    />
-    <img
-      src="{{ url_for('static', filename='img/pccl.png') }}"
-      class="float-right"
-      style="padding-right: 5%"
-      alt="..."
-    />
-  </div>
-  #} {#
-  <div class="text-center">
-    <img
-      class="img-fluid zoomin"
-      src="{{ url_  for('static', filename='img/wip.gif') }}"
-      alt=""
-    />
-  </div>
-  #} {#
-  <div class="container">
-    <marquee style="font-size: 150%; margin: 2%" scrollamount="20">
-      {{announcement.message}}
-    </marquee>
-  </div>
-  #}
+{% extends "base.html" %} {% block content %} 
   <div class="bodystyle">
     <div class="leftbody">
-        <img src="https://pbs.twimg.com/profile_images/1244242412719034369/znFeQw-B_400x400.jpg" >
-        <!-- <img src="../static/bugbounty.png" class="homeimg" alt="Ime Is Loaded"> -->
-        
-        {% if current_user.is_authenticated %}
-        <!-- <div class="Learnmore">
-          <button onclick="myfunc()" id="btn1">RULES</button>
-        </div>
-        <div class="Learnmore">
-          <a
-            href="{{ url_for('submissions') }}"
-            class="butlog"
-            role="button"
-            style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;
-            align-items: center; font-weight: 800;"
-            aria-pressed="true"
-            ><span> Submit your answer</span></a
-          >
-        </div>
-        <div class="Learnmore">
-          <a
-            href="{{ url_for('feedback') }}"
-            class="butlog"
-            style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;
-            align-items: center; font-weight: 800;"
-            role="button"
-            aria-pressed="true"
-            >Feedback</a
-          >
-        </div> -->
-        {% else %}
-        <div class="Learnmore">
-          <button onclick="myfunc()" id="btn1" style="color: #000">RULES</button>
-        </div>
-        <!-- <div class="Learnmore">
-          <a
-            href="{{ url_for('login') }}"
-            class="butlog"
-            style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;
-            align-items: center; font-weight: 800;"
-            role="button"
-            aria-pressed="true"
-            >Login</a
-          >
-        </div>
-        <div class="Learnmore">
-          <a
-            href="{{ url_for('register') }}"
-            class="butlog"
-            style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;
-            align-items: center; font-weight: 800;"
-            role="button"
-            aria-pressed="true"
-            >Register</a
-          >
-        </div> -->
-        {% endif %}
+        {# <img src="https://pbs.twimg.com/profile_images/1244242412719034369/znFeQw-B_400x400.jpg" > #}
+        <img src="static/test1.jpg" class="homeimg" alt="Ime Is Loaded">
       </div>
     <div class="rightbody">
       <div class="right-text">
         <h2 class="BugBountyStyle">BugBounty</h2>
-        <div class="Learnmore">
-          <button onclick="myfunc()" id="btn1" style="color: #000">RULES</button>
-        </div>
-        <div id="HideText" style="color: #000">
-          <div id="hidebox">
-            <h5>
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-              cumque facilis impedit mollitia consequatur enim repellat dicta sint
-              ea. tempore expedita dolorem iusto eum non nemorepellendus enim
-              repellat dicta sint ea cumque facilis impedit mollitia consequatur
-              enim repellat dicta sint ea. tempore expedita dolorem iusto eum non
-              nemorepellendus
-            </h5>
-            <button>Lets Start</button>
-          </div>
-  
-          <div id="showbox">
-            <h5>
-              some random text will be given by then
-  
-            </h5>
-          </div>
+        </br>
+        {%if current_user.is_authenticated%}
+        <div class="container text-center">
+        <div class="row" style="margin-top: 10%">
+        <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="{{ url_for('feedback') }}"
+          class="btn btn-danger btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >Feedback</a
+        >
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5%">
+      <div class="col-sm" style="margin-top: 5%">
+        <a
+          href="#"
+          class="btn btn-info btn-lg active btn-block"
+          role="button"
+          aria-pressed="true"
+          >Buggy Bus Website</a
+        >
+      </div>
+        {%else%}
+        <h3 style="color: orangered;
+    font-family: monospace;">Please login/register first.</h3>
+        {%endif%}
         </div>
       </div>
     </div>

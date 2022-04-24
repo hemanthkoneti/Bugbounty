@@ -21,6 +21,15 @@
               by {{ users[submission.by-1] }}
             </h5>
             <p class="card-text">{{ submission.ans }}</p>
+            <br/>
+            <p class="card-text">
+            Bug_id of previous submission done are:
+            {%for prev in prev_submission %}
+            {%if prev.correct==2 and prev.by==submission.by %}
+            {{prev.bug_id}}, 
+            {%endif%}
+            {%endfor%}
+            </p>
           </div>
         </div>
       </div>
@@ -34,6 +43,9 @@
               </div>
               <div class="form-group">
                 {{ form.points.label(class='form-group') }} {{ form.points() }}
+              </div>
+              <div class="form-group">
+                {{ form.bug_id.label(class='form-group') }} {{ form.bug_id() }}
               </div>
               {{ form.submission_id(value=submission.id) }}
               <div class="form-group text-center">

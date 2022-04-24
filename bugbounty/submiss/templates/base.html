@@ -28,6 +28,9 @@
       </div>
       <div class="col-nav" id="navbarSupportedContent">
         <ul>
+        <li >
+            <a class="anchorhover"  href="{{url_for('instructions')}}"><span>Instructions</span></a>
+          </li>
           <li >
             <a class="anchorhover"  href="{{url_for('leaderboard')}}"><span> Leaderboard</span></a>
           </li>
@@ -70,6 +73,9 @@
             <a class="anchorhover" href="{{url_for('register')}}">Register</a>
           </li>
           {% endif %}
+          <li >
+            <img src="static/pcc_logo.png" style="width:50%; height:50%;"/>
+          </li>
         </ul>
       </div>
     </nav>

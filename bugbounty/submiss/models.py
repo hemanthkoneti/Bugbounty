@@ -12,19 +12,25 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, index=True)
-    roll = db.Column(db.String(64), unique=True, index=True)    
+    username = db.Column(db.String(20), unique=True, index=True)
+    roll = db.Column(db.String(64), unique=True, index=True)
+    roll2=db.Column(db.String(64), unique=True, index=True)
+    password=db.Column(db.String(128))   
     password_hash = db.Column(db.String(128))
     notif_count = db.Column(db.Integer, default=0)
     score=db.Column(db.Integer,default=0)
     user_type = db.Column(db.String(64))
     sub_count=db.Column(db.Integer,default=1)
+    upgrade_time = db.Column(db.DateTime)
 
-    def __init__(self,roll, username, password,user_type):
+    def __init__(self,roll,roll2, username, password,user_type):
         self.roll = roll
+        self.roll2=roll2
         self.username = username
+        self.password=password
         self.password_hash = generate_password_hash(password)
         self.user_type = user_type
+        self.upgrade_time=datetime.now()
     
     def update_count(self,sub_count):
         self.sub_count=sub_count+1
@@ -49,6 +55,7 @@ class Submission(db.Model):
     points = db.Column(db.Integer)
     correct = db.Column(db.Integer)
     review = db.Column(db.String)
+    bug_id=db.Column(db.Integer,default=0)
     time = db.Column(db.DateTime, nullable=False)
     usr = db.relationship("User", backref="by", lazy=True)
 

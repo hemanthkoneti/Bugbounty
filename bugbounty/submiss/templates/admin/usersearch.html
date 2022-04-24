@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(#5bf0f0b3 5%, rgba(227, 230, 87, 0.923) 100%);
+  "
+>
+  <div class="container">
+    <form method="post">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.uid.label(class="form-group") }} {{
+        form.uid(class='form-control') }}<br />
+      </div>
+      <div class="form-group text-center">
+        {{ form.submit(class="btn btn-danger") }}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

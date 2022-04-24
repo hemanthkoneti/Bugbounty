@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    width: 100%;
+    background: linear-gradient(#5bf0f0b3 5%, rgba(227, 230, 87, 0.923) 100%);
+  "
+>
+  <div class="container">
+    {% for submission in submissions %}
+    <div class="row" style="margin-top: 2%">
+      <div class="col-sm-9">
+        <div class="card bg-dark" style="min-height: 100%">
+          <img
+            class="card-img-top"
+            src="{{ url_for('static', filename='submission_pics/' + submission.picture) }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              By {{user}}
+            </h5>
+            <p class="card-text">Explanation: {{ submission.ans }}</p>
+            <p class="card-text">Correct(0-No,1-review,2-Yes):{{ submission.correct }}</p>
+            <p class="card-text">TOS: {{ submission.time }}</p>
+            <p class="card-text">Bug_id: {{submission.bug_id}}</p>
+            <p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {%if not submissions %}
+    <p>No submissions found</p>
+    {%endif%}
+  </div>
+</div>
+{% endblock %}
